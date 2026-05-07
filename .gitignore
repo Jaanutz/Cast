@@ -13,6 +13,17 @@ target
 # Contains mutation testing data
 **/mutants.out*/
 
+/target/
+
+.env
+.env.local
+.env.*.local
+
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
 # RustRover
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
