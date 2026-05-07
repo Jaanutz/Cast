@@ -15,14 +15,14 @@ fn get_city_from_user() -> String {
 
 fn main() {
     println!(
-        "Herzlich willkommen! Bitte gib einen Ort ein, von welchem du die Temperatur erhalten möchtest:"
+        "Welcome! Please enter a location for which you would like to get the current weather:"
     );
 
     let city = get_city_from_user();
     let weather = Weather::new(&city);
 
     println!(
-        "Die Temperatur in {} beträgt aktuell {}°C, gefühlt {}°C mit einer Luftfeuchtigkeit von {}%.",
+        "The temperature in {} is currently {}°C, but feels like {}°C and a humidity of {}%.",
         city,
         weather.get_temperature(),
         weather.get_feels_like_temp(),
