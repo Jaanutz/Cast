@@ -14,18 +14,20 @@ fn get_city_from_user() -> String {
 }
 
 fn main() {
-    println!(
-        "Welcome! Please enter a location for which you would like to get the current weather:"
-    );
+    loop {
+        println!(
+            "Welcome! Please enter a location for which you would like to get the current weather:"
+        );
 
-    let city = get_city_from_user();
-    let weather = Weather::new(&city);
+        let city = get_city_from_user();
+        let weather = Weather::new(&city);
 
-    println!(
-        "The temperature in {} is currently {}°C, but feels like {}°C and a humidity of {}%.",
-        city,
-        weather.get_temperature(),
-        weather.get_feels_like_temp(),
-        weather.get_humidity()
-    );
+        println!(
+            "The temperature in {} is currently {}°C, but feels like {}°C and a humidity of {}%. \n\n",
+            city,
+            weather.get_temperature(),
+            weather.get_feels_like_temp(),
+            weather.get_humidity()
+        );
+    }
 }
