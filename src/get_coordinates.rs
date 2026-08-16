@@ -1,17 +1,14 @@
-use dotenvy::dotenv;
+use crate::api::Api;
 use reqwest::blocking::get;
 use serde_json::Value;
-use std::env;
 
 pub struct Coordinates {
     pub(crate) latitude: f64,
     pub(crate) longitude: f64,
 }
 
-fn api_request(city: &String) -> Value {
-    dotenv().ok();
-
-    let open_weather_api_key = env::var("OPEN_WEATHER_API_KEY").expect("Expected API key!");
+fn api_request(city: &str) -> Value {
+    let open_weather_api_key = Api::get_api_key();
 
     let url = format!(
         "http://api.openweathermap.org/geo/1.0/direct?q={}&limit=1&appid={}",
@@ -26,7 +23,7 @@ fn api_request(city: &String) -> Value {
     return json;
 }
 
-pub fn get_coordinates(city: &String) -> Coordinates {
+pub fn get_coordinates(city: &str) -> Coordinates {
     let result: Value = api_request(city);
 
     let lat = result[0].get("lat").and_then(|v| v.as_f64()).unwrap_or(0.0);

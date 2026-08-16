@@ -1,5 +1,6 @@
 mod get_coordinates;
 mod weather;
+mod api;
 
 use crate::weather::Weather;
 use std::io::{self};

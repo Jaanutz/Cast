@@ -1,8 +1,7 @@
 use crate::get_coordinates::get_coordinates;
-use dotenvy::dotenv;
+use crate::api::Api;
 use reqwest::blocking::get;
 use serde_json::Value;
-use std::env;
 
 pub struct Weather {
     temperature: f64,
@@ -11,10 +10,8 @@ pub struct Weather {
 }
 
 impl Weather {
-    pub fn new(city: &String) -> Weather {
-        dotenv().ok();
-
-        let open_weather_api_key = env::var("OPEN_WEATHER_API_KEY").expect("Expected API key!");
+    pub fn new(city: &str) -> Weather {
+        let open_weather_api_key = Api::get_api_key();
 
         let coords = get_coordinates(city);
 
