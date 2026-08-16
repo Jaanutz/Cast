@@ -1,5 +1,5 @@
 use crate::get_coordinates::get_coordinates;
-use crate::api::Api;
+use crate::open_weather_api::OpenWeatherApi;
 use reqwest::blocking::get;
 use serde_json::Value;
 
@@ -11,13 +11,13 @@ pub struct Weather {
 
 impl Weather {
     pub fn new(city: &str) -> Weather {
-        let open_weather_api_key = Api::get_api_key();
+        let open_weather_api = OpenWeatherApi::new();
 
         let coords = get_coordinates(city);
 
         let url = format!(
             "https://api.openweathermap.org/data/3.0/onecall?lat={}&lon={}&appid={}",
-            coords.latitude, coords.longitude, open_weather_api_key
+            coords.latitude, coords.longitude, open_weather_api.get_api_key()
         );
 
         let response = get(url).unwrap();
