@@ -18,7 +18,8 @@ fn api_request(city: &str) -> Value {
     let response = get(url).unwrap();
     let response_text: String = response.text().unwrap();
 
-    let json: Value = serde_json::from_str(&response_text).expect("JSON not well-formatted.");
+    let json: Value = serde_json::from_str(&response_text)
+        .expect("JSON not well-formatted.");
 
     return json;
 }
@@ -26,8 +27,14 @@ fn api_request(city: &str) -> Value {
 pub fn get_coordinates(city: &str) -> Coordinates {
     let result: Value = api_request(city);
 
-    let lat = result[0].get("lat").and_then(|v| v.as_f64()).unwrap_or(0.0);
-    let lon = result[0].get("lon").and_then(|v| v.as_f64()).unwrap_or(0.0);
+    let lat = result[0]
+        .get("lat")
+        .and_then(|v| v.as_f64())
+        .unwrap_or(0.0);
+    let lon = result[0]
+        .get("lon")
+        .and_then(|v| v.as_f64())
+        .unwrap_or(0.0);
 
     return Coordinates {
         latitude: lat,
