@@ -1,4 +1,4 @@
-mod get_coordinates;
+mod coordinates;
 mod weather;
 mod open_weather_api;
 

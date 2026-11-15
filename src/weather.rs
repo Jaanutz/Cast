@@ -1,4 +1,4 @@
-use crate::get_coordinates::get_coordinates;
+use crate::coordinates::get_coordinates;
 use crate::open_weather_api::OpenWeatherApi;
 use reqwest::blocking::get;
 use serde_json::Value;
